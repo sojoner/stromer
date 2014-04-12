@@ -5,5 +5,5 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [twitter-api "0.7.5"]]
-  :main stromer.source-twitter)
-
+                 [com.taoensso/carmine "2.6.0"])
+  :main stromer.source-twitter
