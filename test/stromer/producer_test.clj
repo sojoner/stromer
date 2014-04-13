@@ -1,6 +1,6 @@
-(ns stromer.core-test
+(ns stromer.producer_test
   (:require [clojure.test :refer :all]
-            [stromer.core :refer :all]))
+            [stromer.producer :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
