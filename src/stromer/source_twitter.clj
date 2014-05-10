@@ -27,18 +27,35 @@
                                 "2989931-zNVTgUS9Mlq5GVSIdL7Wf5n06GKHJJL3L2jv4GRlsR"
                                 "EcGycCSt0DwLmpDtZk43sT4O3GIPWa7vaXfn6xuZjeo"))
 
-(defn on-bodypart [twitter-stuff]
+
+
+(defn on-bodypart [response body]
   "Implement Streamming here"
-  (println twitter-stuff))
+  (prn (str body))
+  ; (let [status (json/read-json (str body))])
+)
 
-(defn on-failure [failure-stuff]
-  (println failure-stuff))
+(defn on-failure [failure-stuff & xargs]
+  (println "on-failure" failure-stuff))
 
-(defn on-exception [exception]
-  (println exception))
+(defn on-exception [response throwable]
+  (println "on-exp" response)
+  (println "-------------------")
+  (println "throwable" (def xxx throwable))
+  )
 
-(defn -main [& args]
-  (println "Start")
-  (let [status-filter (start-twitter-stream my-creds "HSV" on-bodypart on-failure on-exception)])
-  (println "Done"))
+(def http-stream (atom nil))
+
+(defn start [query callback]
+  (reset! http-stream (start-twitter-stream
+                        my-creds
+                        query
+                        on-bodypart
+                        on-failure
+                        on-exception)))
+
+(defn stop []
+  ((:cancel (meta @http-stream))))
+
+
 
