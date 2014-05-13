@@ -6,5 +6,6 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [com.taoensso/carmine "2.6.0"]
                  [twitter-api "0.7.5"]
-                 [org.clojure/tools.logging "0.2.6"]]
+                 [org.clojure/tools.logging "0.2.6"]
+                 [clojurewerkz/elastisch "2.0.0-rc1"]]
   :main stromer.core)

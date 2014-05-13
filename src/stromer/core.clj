@@ -3,6 +3,7 @@
   (:require 
             [stromer.sources.twitter :as st]
             [stromer.sources.redis :as r]
+            [stromer.sources.elastic-search :as elastisch]
             [twitter.oauth :as oauth])
   (:gen-class))
 
@@ -32,7 +33,15 @@
     ;   start your-stuff number-of-loops
     (r/scan 0 callback 1)))
 
+(defn example3 []
+  "Scorlling through an elasticsearch index."
+  (let [response (elastisch/match-all "schauhin" "tweet")
+        callback (fn [msg]
+                  (println msg))]
+       (elastisch/stream-es-index response callback)))
+
 (defn -main [& args]
   ;(example1)
   ;(example2)
+  (example3)
   )
