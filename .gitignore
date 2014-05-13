@@ -5,7 +5,9 @@ pom.xml
 pom.xml.asc
 *.jar
 *.class
+*.iml
+*.DS_Store
+.idea/replstate.xml
 /.lein-*
 /.nrepl-port
-/.idea/*
- *.iml
+.idea/*

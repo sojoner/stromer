@@ -1,4 +1,4 @@
-(ns stromer.source-elastic-search
+(ns stromer.sources.elastic-search
 	(:gen-class))
 
 

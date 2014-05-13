@@ -1,24 +1,44 @@
-(ns stromer.source-redis
+(ns stromer.sources.redis
   (:require
       [clojure.data.json :as json]
-      [taoensso.carmine :as car])
+      [taoensso.carmine :as car :refer (wcar)])
     (:gen-class))
 
 ;; connection
 (def pool (car/make-conn-pool)) ; See docstring for additional options
 (def local-redis (car/make-conn-spec :host "localhost" :port 6379))
-(defmacro wcar [& body] `(car/with-conn pool local-redis ~@body))
+(defmacro wcar* [& body]
+  `(car/with-conn pool local-redis ~@body))
 
-(defn print-handler [msg]
-  (println msg))
+(def subscriber
+  "Hold the listener"
+  (atom nil))
 
-(def listener
-  (car/with-new-pubsub-listener (:spec local-redis)
-                                {channel-name (print-handler msg)}
-                                (car/subscribe  channel-name)))
+(defn start-listener [channel callback]
+  "Start subscription with call back."
+  (reset! subscriber (wcar* (car/with-new-pubsub-listener (:spec local-redis)
+                                       {channel (fn f1 [msg] (callback msg))}
+                                       (car/subscribe  channel)))))
 (defn stop-subscriber []
-  (car/close-listener listener))
+  "stop the subscriber."
+  (wcar* (car/close-listener @subscriber)))
 
-(defn publish-tweets [lasttweetid tweets]
-  (doseq [tweet tweets]
-    (wcar (car/publish query_term tweet))))
+(defn publish-tweets [channel tweet]
+  "Function to publish a tweet to a given channel."
+  (wcar* (car/publish channel tweet)))
+
+(def counter
+  "Hold scan counter"
+  (atom 0))
+
+(defn scan [cursor callback max-loops]
+  "A forever streaming function which returns tweets for ever."
+  (let [result (wcar* (car/scan cursor))
+        new-cursor (nth result 0)
+        keys (nth result 1)]
+      (swap! counter inc)
+      (doseq [key keys]
+        (callback (wcar* (car/get key))))
+      (if (< @counter max-loops)
+        (recur new-cursor callback max-loops))))
+
