@@ -4,6 +4,8 @@
             [clojurewerkz.elastisch.rest.document :as doc]
             [clojurewerkz.elastisch.rest.response :refer [hits-from]]
             [clojurewerkz.elastisch.query :as q]
+            [clojure.java.io :as io]
+            [clojure.data.json :as json]
             )
 	(:gen-class))
 
@@ -28,4 +30,17 @@
         (doseq [hit hits]
           (callback hit))
         (recur next-page callback)))
+
+(defn handle-tweet-line [line]
+  (if (> (count line) 1)
+    (let [tweet (json/read-str line)
+          id (get tweet "id_str")]
+      (doc/put http-connection "bbuzz-hackday" "tweet" id tweet))))
+
+
+(defn import-line-tweets-to-es [path]
+  "Helper function to import .json tweets to redis."
+  (with-open [rdr (io/reader path)]
+    (doseq [line (line-seq rdr)]
+      (handle-line line))))
 
