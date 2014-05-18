@@ -1,7 +1,8 @@
 (ns stromer.sources.redis
   (:require
       [clojure.data.json :as json]
-      [taoensso.carmine :as car :refer (wcar)])
+      [taoensso.carmine :as car :refer (wcar)]
+      [clojure.java.io :as io])
     (:gen-class))
 
 ;; connection
@@ -42,3 +43,15 @@
       (if (< @counter max-loops)
         (recur new-cursor callback max-loops))))
 
+
+(defn handle-line [line]
+  (if (> (count line) 1)
+    (let [tweet (json/read-str line)]
+      (wcar* (car/set  (get tweet "id_str") line)))))
+
+
+(defn import-line-tweet-file [path]
+  "Helper function to import .json tweets to redis."
+  (with-open [rdr (io/reader path)]
+    (doseq [line (line-seq rdr)]
+            (handle-line line))))
