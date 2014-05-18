@@ -44,4 +44,4 @@
   ;(example1)
   ;(example2)
   ;(example3)
-  )
+  (import-line-tweet-file "~/data/2013-12-31.json"))

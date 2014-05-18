@@ -42,3 +42,12 @@
       (if (< @counter max-loops)
         (recur new-cursor callback max-loops))))
 
+
+(defn import-line-tweet-file [path]
+  "Helper function to import .json tweets to redis."
+  (with-open [rdr (io/reader path)]
+    (doseq [line (line-seq rdr)]
+      (let [tweet (json/read-str line)
+            tweet_id (:id tweet)]
+        (wcar* (car/set  tweet_id line))
+      ))))
