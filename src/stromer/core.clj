@@ -45,4 +45,4 @@
   ;(example1)
   ;(example2)
   ;(example3)
-  (r/import-line-tweet-file "~/data/2013-12-31.json"))
+  (r/import-line-tweet-file "/home/hagen/data/2013-12-31.json"))

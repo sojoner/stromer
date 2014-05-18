@@ -46,9 +46,12 @@
 
 (defn handle-line [line]
   (println "Json Line: " line)
-  (let [tweet (json/read-str line)
-        tweet_id (:id tweet)]
-    (wcar* (car/set  tweet_id line))))
+  (if (> (count line) 1)
+    (let [tweet (json/read-str line)
+          tweet_id (:id tweet)]
+      (wcar* (car/set  tweet_id line)))
+    )
+  )
 
 
 (defn import-line-tweet-file [path]
