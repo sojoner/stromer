@@ -4,7 +4,8 @@
             [stromer.sources.twitter :as st]
             [stromer.sources.redis :as r]
             [stromer.sources.elastic-search :as es]
-            [twitter.oauth :as oauth])
+            [twitter.oauth :as oauth]
+            )
   (:gen-class))
 
 
@@ -44,4 +45,4 @@
   ;(example1)
   ;(example2)
   ;(example3)
-  (import-line-tweet-file "~/data/2013-12-31.json"))
+  (r/import-line-tweet-file "~/data/2013-12-31.json"))
