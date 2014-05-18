@@ -42,5 +42,5 @@
   "Helper function to import .json tweets to redis."
   (with-open [rdr (io/reader path)]
     (doseq [line (line-seq rdr)]
-      (handle-line line))))
+      (handle-tweet-line line))))
 
