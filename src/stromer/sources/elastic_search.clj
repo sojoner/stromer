@@ -9,7 +9,7 @@
             )
 	(:gen-class))
 
-(def http-connection (esr/connect "http://es01.geekthink.de"))
+(def http-connection (esr/connect "http://127.0.0.1:9200"))
 
 (defn match-all [index-name type]
   (doc/search http-connection index-name type :query {:match_all {}}))
@@ -33,9 +33,8 @@
 
 (defn handle-tweet-line [line]
   (if (> (count line) 1)
-    (let [tweet (json/read-str line)
-          id (get tweet "id_str")]
-      (doc/put http-connection "bbuzz-hackday" "tweet" id tweet))))
+    (let [tweet (json/read-str line)]
+      (doc/put http-connection "bbuzz-hackday" "tweet" (get tweet "id_str") tweet))))
 
 
 (defn import-line-tweets-to-es [path]
