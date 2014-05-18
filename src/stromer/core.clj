@@ -45,4 +45,5 @@
   ;(example1)
   ;(example2)
   ;(example3)
-  (r/import-line-tweet-file "/home/hagen/data/2013-12-31.json"))
+  ;(r/import-line-tweet-file "/home/hagen/data/2013-12-31.json")
+  (es/import-line-tweets-to-es "/home/hagen/data/2013-12-31.json"))
