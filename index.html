@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Stromer by sojoner</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Stromer</h1>
+        <p class="header">Stromer playground for a tweet stream</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/sojoner/stromer/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/sojoner/stromer/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/sojoner/stromer">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/sojoner">sojoner</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="stromer" class="anchor" href="#stromer"><span class="octicon octicon-link"></span></a>stromer</h1>
+
+<p>A Clojure playground for a stream-mining Hackday at the <a href="http://berlinbuzzwords.de/hackathons-meetups">BBUZZ-2014</a> you can still
+register <a href="http://lanyrd.com/2014/data-stream-mining-hackathon/">here</a>.</p>
+
+<p>We want to work on some stream-mining algorithms in different languages ( <a href="https://github.com/sojoner/stromer">clojure</a>
+<a href="https://github.com/knutwalker/bbuzz14-stream-mining">scala</a> and <a href="https://github.com/truemped/bbhack-2014">python</a>),
+mining a stream of tweets.</p>
+
+<p>All of these repository's should help you get started to get some tweets and work with them, since we try to save
+as much setup-time as we can.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="checkout" class="anchor" href="#checkout"><span class="octicon octicon-link"></span></a>checkout</h3>
+
+<pre><code>git clone https://github.com/sojoner/stromer
+</code></pre>
+
+<h3>
+<a name="compile" class="anchor" href="#compile"><span class="octicon octicon-link"></span></a>compile</h3>
+
+<pre><code>lein compile
+</code></pre>
+
+<h3>
+<a name="run-the-examples" class="anchor" href="#run-the-examples"><span class="octicon octicon-link"></span></a>run the examples</h3>
+
+<pre><code>lein run
+</code></pre>
+
+<h3>
+<a name="open-the-repl" class="anchor" href="#open-the-repl"><span class="octicon octicon-link"></span></a>open the repl</h3>
+
+<pre><code>lein repl
+</code></pre>
+
+<h2>
+<a name="codepoints" class="anchor" href="#codepoints"><span class="octicon octicon-link"></span></a>Codepoints</h2>
+
+<p>in src/stromer/core.clj you will find 3 examples</p>
+
+<ul>
+<li>example1 will need the twitter oauth credentials and than open a stream</li>
+<li>example2 will scan redis keys for tweet.json objects infinitely or how many times you want to loop through them</li>
+<li>example3 will scroll through an provided elasticsearch index of tweets</li>
+</ul><p>You can of course edit the tweet sources in the following files.</p>
+
+<ul>
+<li>src/stromer/sources/redis.clj</li>
+<li>src/stromer/sources/elastic_search.clj</li>
+<li>src/stromer/sources/twitter.clj</li>
+</ul><p>All you need to do is choose a source that will work for you, remove the dummy print callback and implement your
+own callback function which will than do great stream-mining.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright © 2014 <a href="https://github.com/Sojoner" class="user-mention">@Sojoner</a>
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
