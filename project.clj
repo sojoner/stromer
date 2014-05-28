@@ -10,5 +10,6 @@
                  [clojurewerkz/elastisch "2.0.0-rc1"]
                  [com.google.guava/guava "17.0"]
                  [org.clojure/math.numeric-tower "0.0.4"]
+                 [org.clojure/data.priority-map "0.0.5"]
                  ]
   :main stromer.core)
