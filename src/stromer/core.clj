@@ -36,7 +36,7 @@
 
 (defn example3 []
   "Scorlling through an elasticsearch index."
-  (let [response (es/do-match-all "schauhin" "tweet")
+  (let [response (es/do-match-all "bbuzz-hackday" "tweet")
         callback (fn [msg]
                   (println msg))]
        (es/stream-es-index response callback)))
@@ -44,6 +44,7 @@
 (defn -main [& args]
   ;(example1)
   ;(example2)
-  ;(example3)
+  (example3)
   ;(r/import-line-tweet-file "/home/hagen/data/2013-12-31.json")
-  (es/import-line-tweets-to-es "/home/hagen/data/2013-12-31.json"))
+  ;(es/import-line-tweets-to-es "/home/hagen/data/2013-12-31.json")
+  )

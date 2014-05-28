@@ -9,7 +9,7 @@
             )
 	(:gen-class))
 
-(def http-connection (esr/connect "http://127.0.0.1:9200"))
+(def http-connection (esr/connect "http://es01.geekthink.de"))
 
 (defn match-all [index-name type]
   (doc/search http-connection index-name type :query {:match_all {}}))

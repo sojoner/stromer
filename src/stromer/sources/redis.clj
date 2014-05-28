@@ -18,7 +18,7 @@
 (defn start-listener [channel callback]
   "Start subscription with call back."
   (reset! subscriber (wcar* (car/with-new-pubsub-listener (:spec local-redis)
-                                       {channel (fn f1 [msg] (callback msg))}
+                                       {channel (fn [msg] (callback msg))}
                                        (car/subscribe  channel)))))
 (defn stop-subscriber []
   "stop the subscriber."
