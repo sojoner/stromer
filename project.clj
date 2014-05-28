@@ -7,5 +7,8 @@
                  [com.taoensso/carmine "2.6.0"]
                  [twitter-api "0.7.5"]
                  [org.clojure/tools.logging "0.2.6"]
-                 [clojurewerkz/elastisch "2.0.0-rc1"]]
+                 [clojurewerkz/elastisch "2.0.0-rc1"]
+                 [com.google.guava/guava "17.0"]
+                 [org.clojure/math.numeric-tower "0.0.4"]
+                 ]
   :main stromer.core)
